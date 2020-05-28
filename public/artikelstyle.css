@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&family=Fredoka+One&display=swap");
+
+body {
+  background-color: #303030;
+  color: rgb(30, 219, 140);
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: 0.7fr 1fr;
+  grid-template-rows: 1fr repeat(2, 0.5fr) repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.divimg {
+  grid-area: 1 / 1 / 4 / 2;
+  padding: 30px;
+}
+.divimg > img {
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+}
+.divname {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.divname > h1 {
+  font-family: "Fredoka One";
+  font-size: 72px;
+  padding: 5px 0px 0px 10px;
+}
+.divprice {
+  grid-area: 2 / 2 / 3 / 3;
+  background: #151515;
+  border-radius: 20px;
+  width: 25%;
+}
+.divprice > .price {
+  font-family: "Fredoka One";
+  font-size: 48px;
+  padding: 5px 0px 0px 10px;
+}
+.divprice > .euro {
+  font-family: "Fredoka One";
+  font-size: 72px;
+  color: #ffffff;
+  opacity: 0.4;
+}
+
+.divavg {
+  grid-area: 3 / 2 / 4 / 3;
+  background: #151515;
+  border-radius: 20px;
+  width: 25%;
+}
+.divavg > .avg {
+  font-family: "Fredoka One";
+  font-size: 48px;
+  padding: 5px 0px 0px 10px;
+}
+.divavg > .five {
+  font-family: "Fredoka One";
+  font-size: 48px;
+}
+
+.divdesc {
+  grid-area: 4 / 1 / 5 / 3;
+  background: #151515;
+  border-radius: 20px;
+  margin: 30px;
+}
+.divdesc > .desc {
+  font-family: "Baloo Bhai 2";
+  font-size: 24px;
+  margin: 20px;
+}
+
+.divrate {
+  grid-area: 5 / 1 / 6 / 3;
+}
+.divrate > .rate {
+  font-family: "Fredoka One";
+  font-size: 72px;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 56px;
+  font-weight: bold;
+  font-family: "Fredoka One";
+  margin: 0px 25px 0px 0px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 2px 16px;
+}
+
+/* Modal Footer 
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+*/
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #202020;
+  margin: 50px auto 50px auto;
+  padding: 0;
+  border-radius: 20px;
+  width: 55%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.5s;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}

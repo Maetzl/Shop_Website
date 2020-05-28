@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emil</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./../public/artikelstyle.css"
+    />
+  </head>
+
+  <body>
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="parent">
+          <% data.forEach(entry => { %>
+          <div class="divimg">
+            <img src="<%= entry.Bild %>" />
+          </div>
+          <div class="divname">
+            <h1><%= entry.Name %></h1>
+          </div>
+          <div class="divprice">
+            <a class="price"><%= entry.Preis %></a>
+            <a class="euro">€</a>
+          </div>
+          <div class="divavg">
+            <a class="avg"><%= entry.Bewertung %></a>
+            <a class="five">/5⭐</a>
+          </div>
+          <div class="divdesc">
+            <p class="desc"><%= entry.Beschreibung %></p>
+          </div>
+          <% } )%>
+          <div class="divrate">
+            <p class="rate">Bewerten: ⭐⭐⭐⭐⭐</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Preis</th>
+          <th scope="col">Beschreibung</th>
+          <th scope="col">Bewertung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <script src="./../public/script.js"></script>
+  </body>
+</html>

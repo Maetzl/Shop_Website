@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  background-color: #282828;
+}
+
+.header {
+  background-color: #25639c;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-input {
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+}
+.searchbtn {
+  width: 15%;
+
+  vertical-align: middle;
+}
+.menubtn {
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  transform: rotate(-45deg) translate(-10px, 7px);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  transform: rotate(45deg) translate(-8px, -6px);
+}
+
+.loginbtn {
+}
+.oberesPanel {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 50px;
+}
+.unteresPanel {
+  display: flex;
+  flex-wrap: wrap;
+}
+.highlight {
+  margin: 50px;
+  width: 400px;
+  height: 300px;
+  background-color: #8f8e8e;
+  border-radius: 20px;
+}
+.highlight > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.item {
+  border-radius: 20px;
+  margin: 20px;
+  width: 200px;
+  height: 150px;
+  background-color: #8f8e8e;
+}
+
+.button-container {
+  display: block;
+  margin: auto;
+  text-align: center;
+  padding-top: 5%;
+}
+
+.action {
+  display: inline-block;
+  vertical-align: top;
+  padding: 15px 45px;
+  margin-right: 5px;
+  color: #000000;
+  font-size: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  position: relative;
+  border: 2px solid #174269;
+  -webkit-transition: all 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  transition: all 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
+
+.action::before {
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0373db;
+  -webkit-transition: all 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  transition: all 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
+
+.action:hover:before {
+  width: 100%;
+}
+
+.action:hover > span {
+  color: #fff;
+}
+
+span {
+  position: relative;
+}
