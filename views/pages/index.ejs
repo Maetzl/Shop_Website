@@ -29,43 +29,50 @@
             <h1><%= entry.Name %></h1>
           </div>
           <div class="divprice">
-            <a class="price"><%= entry.Preis %></a>
-            <a class="euro">€</a>
+            <div class="priceBack">
+              <a class="price"><%= entry.Preis %></a>
+              <a class="euro">€</a>
+            </div>
           </div>
-          <div class="divavg">
-            <a class="avg"><%= entry.Bewertung %></a>
-            <a class="five">/5⭐</a>
+          <div class="divavg" id="average">
+            <div class="avgBack">
+              <% if(entry.Anzahlbewertung != 0){ %>
+              <a class="avg"
+                ><%= (entry.Bewertung/entry.Anzahlbewertung).toFixed(1) %>/5</a
+              >
+              <% } else{ %>
+              <a class="avg"> 0/5</a>
+              <% } %>
+              <a class="star">⭐</a>
+            </div>
           </div>
           <div class="divdesc">
             <p class="desc"><%= entry.Beschreibung %></p>
           </div>
-          <% } )%>
           <div class="divrate">
-            <p class="rate">Bewerten: ⭐⭐⭐⭐⭐</p>
+            <a class="rate">Bewerten:</a>
+            <%/* %> <% if () { %>
+            <a class="rate" onclick="bewertung(1, <%= entry.ID %>)">⭐</a>
+            <% } %> <% if () { %>
+            <a class="rate" onclick="bewertung(2, <%= entry.ID %>)">⭐</a>
+            <% } %> <% if () { %>
+            <a class="rate" onclick="bewertung(3, <%= entry.ID %>)">⭐</a>
+            <% } %> <% if () { %>
+            <a class="rate" onclick="bewertung(4, <%= entry.ID %>)">⭐</a>
+            <% } %> <% if () { %>
+            <a class="rate" onclick="bewertung(5, <%= entry.ID %>)">⭐</a>
+            <% } %> <%*/%>
+
+            <a class="rate" onclick="bewertung(1, <%= entry.ID %>)">⭐</a>
+            <a class="rate" onclick="bewertung(2, <%= entry.ID %>)">⭐</a>
+            <a class="rate" onclick="bewertung(3, <%= entry.ID %>)">⭐</a>
+            <a class="rate" onclick="bewertung(4, <%= entry.ID %>)">⭐</a>
+            <a class="rate" onclick="bewertung(5, <%= entry.ID %>)">⭐</a>
           </div>
+          <% } )%>
         </div>
       </div>
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Preis</th>
-          <th scope="col">Beschreibung</th>
-          <th scope="col">Bewertung</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
     <script src="./../public/script.js"></script>
   </body>
 </html>

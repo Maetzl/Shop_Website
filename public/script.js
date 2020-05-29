@@ -24,14 +24,17 @@ window.onclick = function (event) {
   }
 };
 
-$(document).ready(() => {
-  // DOMContent is laoded, now we can start checking HTML Elements
-  // If we dont "wait" for document to be ready, we cannot access HTML elements
-  // for testing purposes, you can use a "debugger;" statement or also "console.log(element)"
-  console.log("DOM is ready!");
-
-  getData(); // TODO: Implement getData Method
-  const input = $("#hft-shoutbox-form-input-name");
-  const textarea = $("#hft-shoutbox-form-textarea");
-  const form = $("#hft-shoutbox-form");
-});
+function bewertung(i, id) {
+  fetch("/postBewertung", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      i,
+      id,
+    }),
+  }).catch((e) => {
+    console.log(e);
+  });
+}
