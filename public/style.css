@@ -20,6 +20,8 @@ body {
 
   vertical-align: middle;
 }
+
+/*Menü Button*/
 .menubtn {
   display: inline-block;
   cursor: pointer;
@@ -48,30 +50,47 @@ body {
   transform: rotate(45deg) translate(-8px, -6px);
 }
 
-.loginbtn {
-}
+/*HIGHLIGHTS*/
 .oberesPanel {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  margin: 50px;
+  margin: 5 px;
+  background-color: #8f8e8e;
+  border-radius: 30px;
 }
 .unteresPanel {
   display: flex;
   flex-wrap: wrap;
 }
 .highlight {
-  margin: 50px;
-  width: 400px;
-  height: 300px;
-  background-color: #8f8e8e;
-  border-radius: 20px;
+  position: relative;
+  box-sizing: border-box;
 }
 .highlight > img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
+
+  width: 50%;
+  height: 50%;
 }
+.highlight-txt {
+  margin: auto;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 10%;
+  padding: 15px;
+  border-radius: 5px;
+  border-style: ;
+  border-color: #757575;
+}
+
 .item {
   border-radius: 20px;
   margin: 20px;
@@ -153,5 +172,8 @@ span {
 .login-input[type="text"]:focus {
   border: 3px solid rgb(76, 151, 221);
 }
+<<<<<<< HEAD
 
  
+=======
+>>>>>>> 3a22734c05aa1b95d1691ca5f771c46269907a64
