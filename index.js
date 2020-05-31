@@ -1,23 +1,121 @@
+
 const express = require("express");
 var sqlite3 = require("sqlite3").verbose();
+const db = new sqlite3.Database("./db/shopdb.db");
 const bodyParser = require("body-parser");
-const db = new sqlite3.Database("./db/artikel.db");
+const flash = require('express-flash')
+const session = require('express-session')
+const passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 
 const port = process.env.PORT || 3000;
 const app = express();
+
 
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/public", express.static(process.cwd() + "/public"));
+app.use(flash())
+app.use(session({
+    secret: 'somesecret',
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+//--------- passport configuration -----------//
+
+passport.use(new LocalStrategy(
+  function (username, password, done) {
+      db.get('SELECT * FROM users WHERE username = ?', [username], (err, user) => {
+          if (err) { return done(err); }
+          if (!user) {
+              return done(null, false, { message: 'Incorrect username.' });
+          }
+          if (user.password != password) {
+              return done(null, false, { message: 'Incorrect password.' });
+          }
+          return done(null, user);
+      });
+  }
+));
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+  done(null, user);
+});
+
+//--------------------------------------------//
+
 
 app.get("/", async (req, res) => {
-  db.all("SELECT * FROM Artikel WHERE ID = 1", (err, artikel) => {
-    res.render("pages/index", {
-      data: artikel,
-    });
+
+  db.all("SELECT rowid AS ID,* FROM Artikel",[],(err, articles) => {
+    if(err){
+      console.log(err.message);
+      //res.render('pages/login');
+  }else{
+  res.render('pages/index', { articles });
+  }});
+});
+
+//--------Route:   /login 
+
+app.get('/login', (req, res) => {
+  console.log("Load Login Page");
+  res.render('pages/login');
+
+});
+
+app.post('/login',
+  passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureFlash: true
+  })
+);
+
+//--------Route:   /change-articles
+
+app.get('/change-articles',checkAuthenticated,(req,res)=>{
+  db.all('SELECT rowid AS ID,* FROM Artikel', (err, articles) => {
+      res.render('pages/change-articles', { articles });
   });
+});
+
+app.post('/add-article',checkAuthenticated,(req,res)=>{
+
+  if(req.body.Artikel_Name&&req.body.Artikel_Preis&&req.body.Artikel_Beschreibung){
+      db.run('INSERT INTO artikel(Name, Preis, Beschreibung, Bild) VALUES(?,?,?,?);',
+      [req.body.Artikel_Name, req.body.Artikel_Preis, req.body.Artikel_Beschreibung,req.body.Artikel_Bild_Url],
+      (err)=>{
+          if (err){
+              console.log(err);
+          }
+          console.log("Article added!");
+          res.render('pages/change-articles');
+      });
+  }
+  console.log("No article added.");
+  res.redirect('/change-articles');
+});
+
+app.post('/delete-article',checkAuthenticated,(req,res)=>{
+  db.run('DELETE FROM Artikel WHERE rowid=?',req.body.ArtikelID, (err) => {
+    if (err){
+      console.log(err);
+  }
+  console.log("Artikel "+req.body.ArtikelID+" gelöscht...");
+  res.redirect('/change-articles');
+  });
+});
+
+app.post("/logout",(req,res)=>{
+  req.logOut();
 });
 
 app.post("/postBewertung", (req, res) => {
@@ -35,5 +133,15 @@ app.post("/postBewertung", (req, res) => {
 const server = app.listen(port, () => {
   console.log(`Server listening on port ${port}…`);
 });
+
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  console.log("Couldn't authenticate...");
+  res.redirect('/');
+}
+
 
 module.exports = server;

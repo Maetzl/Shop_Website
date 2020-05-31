@@ -1,0 +1,46 @@
+<% articles.forEach((entry)=>{ %>
+  <!-- The Modal -->
+  <div  class= "modal" id= "<%= entry.ID %>">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="parent">
+        <div class="divimg">
+          <img src="<%= entry.Bild %>" />
+        </div>
+        <div class="divname">
+          <h1><%= entry.Name %></h1>
+        </div>
+        <div class="divprice">
+          <div class="priceBack">
+            <a class="price"><%= entry.Preis %></a>
+            <a class="euro">€</a>
+          </div>
+        </div>
+        <div class="divavg" id="average">
+          <div class="avgBack">
+            <% if(entry.Anzahlbewertung != 0){ %>
+            <a class="avg"><%= (entry.Bewertung/entry.Anzahlbewertung).toFixed(1) %>/5</a>
+            <% } else{ %>
+            <a class="avg"> 0/5</a>
+            <% } %>
+            <a class="star">⭐</a>
+          </div>
+        </div>
+        <div class="divdesc">
+          <p class="desc"><%= entry.Beschreibung %></p>
+        </div>
+        <div class="divrate">
+          <a class="rate">Bewerten:</a>
+          <a class="rate" >⭐</a>
+          <a class="rate" >⭐</a>
+          <a class="rate" >⭐</a>
+          <a class="rate" >⭐</a>
+          <a class="rate" >⭐</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    <% });%>
+    
+    <script src="/public/script.js"></script>

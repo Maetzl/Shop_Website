@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop24</title>
+    <link rel="stylesheet" href="public/style.css" />
+    <script src="public/main.js"></script>
+</head>
+
+<body>
+    <form id = "Login-Form"action="/login" method="post">
+        <div class="login-ausrichtung">
+            <div>
+                <label class="login-label">Username:</label>
+                <div><input class="login-input" type="text" name="username" /></div>
+            </div>
+            <div>
+                <label class="login-label">Password:</label>
+                <div>
+                    <input class="login-input" type="password" name="password" />
+                </div>
+            </div>
+            <div class="container">
+                <div class="button-container" me>
+                    <a class="action" onclick="document.getElementById('Login-Form').submit();">
+                        <span type="submit">Log in</span>
+                    </a>
+
+                    <a href="/" class="action">
+                        <span type="submit">back</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

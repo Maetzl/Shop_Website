@@ -1,78 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Emil</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="./../public/artikelstyle.css"
-    />
-  </head>
 
-  <body>
-    <!-- Trigger/Open The Modal -->
-    <button id="myBtn">Open Modal</button>
+<head>
+  <title>Shop24</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="../../public/artikelstyle.css" />
+  <link rel="stylesheet" href="/public/style.css" />
+  <script src="/public/main.js"></script>
+  <script src="/public/script.js"></script>
+</head>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="parent">
-          <% data.forEach(entry => { %>
-          <div class="divimg">
-            <img src="<%= entry.Bild %>" />
-          </div>
-          <div class="divname">
-            <h1><%= entry.Name %></h1>
-          </div>
-          <div class="divprice">
-            <div class="priceBack">
-              <a class="price"><%= entry.Preis %></a>
-              <a class="euro">€</a>
-            </div>
-          </div>
-          <div class="divavg" id="average">
-            <div class="avgBack">
-              <% if(entry.Anzahlbewertung != 0){ %>
-              <a class="avg"
-                ><%= (entry.Bewertung/entry.Anzahlbewertung).toFixed(1) %>/5</a
-              >
-              <% } else{ %>
-              <a class="avg"> 0/5</a>
-              <% } %>
-              <a class="star">⭐</a>
-            </div>
-          </div>
-          <div class="divdesc">
-            <p class="desc"><%= entry.Beschreibung %></p>
-          </div>
-          <div class="divrate">
-            <a class="rate">Bewerten:</a>
-            <%/* %> <% if () { %>
-            <a class="rate" onclick="bewertung(1, <%= entry.ID %>)">⭐</a>
-            <% } %> <% if () { %>
-            <a class="rate" onclick="bewertung(2, <%= entry.ID %>)">⭐</a>
-            <% } %> <% if () { %>
-            <a class="rate" onclick="bewertung(3, <%= entry.ID %>)">⭐</a>
-            <% } %> <% if () { %>
-            <a class="rate" onclick="bewertung(4, <%= entry.ID %>)">⭐</a>
-            <% } %> <% if () { %>
-            <a class="rate" onclick="bewertung(5, <%= entry.ID %>)">⭐</a>
-            <% } %> <%*/%>
-
-            <a class="rate" onclick="bewertung(1, <%= entry.ID %>)">⭐</a>
-            <a class="rate" onclick="bewertung(2, <%= entry.ID %>)">⭐</a>
-            <a class="rate" onclick="bewertung(3, <%= entry.ID %>)">⭐</a>
-            <a class="rate" onclick="bewertung(4, <%= entry.ID %>)">⭐</a>
-            <a class="rate" onclick="bewertung(5, <%= entry.ID %>)">⭐</a>
-          </div>
-          <% } )%>
-        </div>
+<body>
+  <div class="header">
+    <div class="search">
+      <input class="search-input" type="text" placeholder="Search..." />
+      <img class="searchbtn" src="Pics/suchbutton.svg" />
+    </div>
+    <div class="container">
+      <div class="button-container">
+        <a href="change-articles" class="action">
+          <span>Artikel bearbeiten</span>
+        </a>
+        <a href="login" class="action">
+          <span>Login</span>
+        </a>
       </div>
     </div>
-    <script src="./../public/script.js"></script>
-  </body>
+  </div>
+  <div class="body">
+    <div class="oberesPanel">
+      <div class="highlight">
+        <img src="Pics/41t-4N5+goL._AC_SY200_.jpg" />
+      </div>
+      <div class="highlight"><img src="Pics/schuhe2.jpg" /></div>
+      <div class="highlight"><img src="Pics/schuhe3.jpg" /></div>
+      <div class="highlight"><img src="Pics/hantelnak.jpg" /></div>
+      <div class="highlight"><img src="Pics/helm.jpg" /></div>
+      <div class="highlight"><img src="Pics/latzhose.jpg" /></div>
+      <div class="highlight"><img src="Pics/socken.jpg" /></div>
+      <div class="highlight"><img src="Pics/uhr.jpg" /></div>
+      <div class="highlight"><img src="Pics/tshirt.jpg" /></div>
+    </div>
+    <div class="unteresPanel">
+      <% articles.forEach((article) => { %>
+      <div class="item" onclick = "setcurrentitem(<%= article.ID %>)">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Preis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= article.ID %></td>
+              <td><%= article.Name %></td>
+              <td><%= article.Preis %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+
+<%- include('../partials/modal.ejs', {articles: articles})%>
+
+</body>
+
 </html>

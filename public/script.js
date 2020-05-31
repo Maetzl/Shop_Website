@@ -1,21 +1,25 @@
 // Get the modal
 var modal = document.getElementById("myModal");
+var span = [...document.getElementsByClassName("close")];
+var articleid = undefined;
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function () {
+function showModal() {
+  setModal();
   modal.style.display = "block";
-};
+}
+function setModal() {
+  modal = document.getElementById(getcurrentitem());
+}
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+span.forEach(
+  (element, index, array) => {
+    element.onclick = () => {
+      setModal();
+      modal.style.display = "none";
+    }
+  }
+);
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
@@ -23,6 +27,14 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+function setcurrentitem(articlea) {
+  articleid = articlea;
+  showModal();
+}
+function getcurrentitem() {
+  return articleid;
+}
 
 function bewertung(i, id) {
   fetch("/postBewertung", {
