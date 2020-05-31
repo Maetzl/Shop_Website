@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap");
 
 body {
   background-color: #303030;
@@ -19,8 +20,8 @@ body {
 }
 .divimg > img {
   border-radius: 20px;
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 400px;
 }
 
 .divname {
@@ -89,11 +90,15 @@ body {
 
 .divrate {
   grid-area: 5 / 1 / 6 / 3;
+  font-size: 72px;
+  display: flex;
+  justify-content: center;
 }
-.divrate > .rate {
+.divrate > .rate1 {
   font-family: "Fredoka One";
   font-size: 72px;
   text-align: center;
+  padding-right: 10px;
 }
 
 /* The Modal (background) */
@@ -170,4 +175,20 @@ body {
     top: 0;
     opacity: 1;
   }
+}
+
+.rate-base-layer {
+  color: #aaa;
+  padding-left: 10px;
+  margin-top: -8px;
+}
+.rate-hover-layer {
+  color: #151515;
+  padding-left: 10px;
+  margin-top: -8px;
+}
+.rate-select-layer {
+  color: #aaa;
+  padding-left: 10px;
+  margin-top: -8px;
 }

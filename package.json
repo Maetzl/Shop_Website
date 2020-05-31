@@ -12,6 +12,7 @@
     "jquery": "^3.5.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "rater-js": "^1.0.1",
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {},
