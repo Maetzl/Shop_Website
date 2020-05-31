@@ -1,46 +1,64 @@
 <% articles.forEach((entry)=>{ %>
-  <!-- The Modal -->
-  <div  class= "modal" id= "<%= entry.ID %>">
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div class="parent">
-        <div class="divimg">
-          <img src="<%= entry.Bild %>" />
+<!-- The Modal -->
+<div class="modal" id="<%= entry.ID %>">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="parent">
+      <div class="divimg">
+        <img src="<%= entry.Bild %>" />
+      </div>
+      <div class="divname">
+        <h1><%= entry.Name %></h1>
+      </div>
+      <div class="divprice">
+        <div class="priceBack">
+          <a class="price"><%= entry.Preis %></a>
+          <a class="euro">€</a>
         </div>
-        <div class="divname">
-          <h1><%= entry.Name %></h1>
+      </div>
+      <div class="divavg" id="average">
+        <div class="avgBack">
+          <% if(entry.Anzahlbewertung != 0){ %>
+          <a class="avg"
+            ><%= (entry.Bewertung/entry.Anzahlbewertung).toFixed(1) %>/5</a
+          >
+          <% } else{ %>
+          <a class="avg"> 0/5</a>
+          <% } %>
+          <a class="star">⭐</a>
         </div>
-        <div class="divprice">
-          <div class="priceBack">
-            <a class="price"><%= entry.Preis %></a>
-            <a class="euro">€</a>
-          </div>
-        </div>
-        <div class="divavg" id="average">
-          <div class="avgBack">
-            <% if(entry.Anzahlbewertung != 0){ %>
-            <a class="avg"><%= (entry.Bewertung/entry.Anzahlbewertung).toFixed(1) %>/5</a>
-            <% } else{ %>
-            <a class="avg"> 0/5</a>
-            <% } %>
-            <a class="star">⭐</a>
-          </div>
-        </div>
-        <div class="divdesc">
-          <p class="desc"><%= entry.Beschreibung %></p>
-        </div>
-        <div class="divrate">
-          <a class="rate">Bewerten:</a>
-          <a class="rate" >⭐</a>
-          <a class="rate" >⭐</a>
-          <a class="rate" >⭐</a>
-          <a class="rate" >⭐</a>
-          <a class="rate" >⭐</a>
-        </div>
+      </div>
+      <div class="divdesc">
+        <p class="desc"><%= entry.Beschreibung %></p>
+      </div>
+      <div class="divrate">
+        <a class="rate1">Bewerten:</a>
+        <div class="rate"></div>
       </div>
     </div>
   </div>
-    <% });%>
-    
-    <script src="/public/script.js"></script>
+</div>
+
+<script src="/public/script.js"></script>
+<script
+  src="http://code.jquery.com/jquery-1.11.3.min.js"
+  charset="utf-8"
+></script>
+<script src="/public/rater.js" charset="utf-8"></script>
+<script>
+  $(document).ready(function () {
+    var options = {
+      max_value: 5,
+      step_size: 1,
+      selected_symbol_type: "utf8_star",
+      change_once: true,
+      ajax_method: "POST",
+      url: "http://localhost:3000/postBewertung",
+      additional_data: { id: <%= entry.ID %> },
+    };
+    $(".rate").rate(options);
+  });
+</script>
+
+<% });%>
