@@ -59,7 +59,14 @@ app.get("/", async (req, res) => {
       console.log(err.message);
       //res.render('pages/login');
   }else{
-  res.render('pages/index', { articles });
+    if(!req.isAuthenticated()){
+      console.log("Load index...");
+      res.render('pages/index', { articles , Login: true});
+    }else{
+      console.log("Load index... logged in");
+      res.render('pages/index', { articles , Login: false});
+      
+    }
   }});
 });
 
@@ -79,6 +86,11 @@ app.post('/login',
   })
 );
 
+app.get('/logout', function(req, res){
+  console.log("logging out...")
+  req.logOut();
+  res.redirect('/');
+});
 //--------Route:   /change-articles
 
 app.get('/change-articles',checkAuthenticated,(req,res)=>{
@@ -87,7 +99,7 @@ app.get('/change-articles',checkAuthenticated,(req,res)=>{
   });
 });
 
-app.post('/add-article',checkAuthenticated,(req,res)=>{
+app.post('/add-article', async (req,res)=>{
 
   if(req.body.Artikel_Name&&req.body.Artikel_Preis&&req.body.Artikel_Beschreibung){
       db.run('INSERT INTO artikel(Name, Preis, Beschreibung, Bild) VALUES(?,?,?,?);',
@@ -97,7 +109,7 @@ app.post('/add-article',checkAuthenticated,(req,res)=>{
               console.log(err);
           }
           console.log("Article added!");
-          res.render('pages/change-articles');
+          res.redirect('pages/change-articles');
       });
   }
   console.log("No article added.");

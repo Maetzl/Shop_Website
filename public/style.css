@@ -87,7 +87,6 @@ body {
   width: 10%;
   padding: 15px;
   border-radius: 5px;
-  border-style: ;
   border-color: #757575;
 }
 
@@ -172,8 +171,3 @@ span {
 .login-input[type="text"]:focus {
   border: 3px solid rgb(76, 151, 221);
 }
-<<<<<<< HEAD
-
- 
-=======
->>>>>>> 3a22734c05aa1b95d1691ca5f771c46269907a64

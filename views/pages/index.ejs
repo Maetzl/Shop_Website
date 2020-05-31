@@ -19,12 +19,19 @@
     </div>
     <div class="container">
       <div class="button-container">
+        <% if (!Login){ %>
         <a href="change-articles" class="action">
           <span>Artikel bearbeiten</span>
         </a>
+        <a href="logout" class="action">
+          <span>Logout</span>
+        </a>
+        
+        <% }else {%>
         <a href="login" class="action">
           <span>Login</span>
         </a>
+        <% } %>
       </div>
     </div>
   </div>
