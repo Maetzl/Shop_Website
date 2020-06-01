@@ -3,13 +3,13 @@
 
 body {
   background-color: #303030;
-  color: rgb(30, 219, 140);
+  color: #1edb8c;
 }
 
 .parent {
   display: grid;
   grid-template-columns: 0.7fr 1fr;
-  grid-template-rows: 1fr repeat(2, 0.5fr) repeat(2, 1fr);
+  grid-template-rows: 1fr repeat(2, 0.5fr) 1fr 0.5fr 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
@@ -106,6 +106,14 @@ body {
 .divrate > .ratestar:hover {
   opacity: 0.6;
 }
+
+.divbuy {
+  grid-area: 6 / 1 / 7 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -180,4 +188,52 @@ body {
     top: 0;
     opacity: 1;
   }
+}
+
+.button-containerMod {
+  display: block;
+  margin: auto;
+  text-align: center;
+  padding-top: 2%;
+}
+
+.actionMod {
+  display: inline-block;
+  vertical-align: top;
+  padding: 30px 90px;
+  margin-right: 5px;
+  color: #1edb8c;
+  font-size: 30px;
+  font-family: "Fredoka One";
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  position: relative;
+  border: 2px solid #181818;
+  -webkit-transition: all 0.1s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  transition: all 0.1s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
+
+.actionMod::before {
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #181818;
+  -webkit-transition: all 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  transition: all 0.4s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
+
+.actionMod:hover:before {
+  width: 100%;
+}
+
+.actionMod:hover > span {
+  color: #1edb8c;
+}
+
+span {
+  position: relative;
 }
