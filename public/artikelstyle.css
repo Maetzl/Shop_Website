@@ -94,13 +94,18 @@ body {
   display: flex;
   justify-content: center;
 }
-.divrate > .rate1 {
+.divrate > .rate {
   font-family: "Fredoka One";
   font-size: 72px;
   text-align: center;
   padding-right: 10px;
 }
-
+.divrate > .ratestar {
+  margin-top: -10px;
+}
+.divrate > .ratestar:hover {
+  opacity: 0.6;
+}
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -175,20 +180,4 @@ body {
     top: 0;
     opacity: 1;
   }
-}
-
-.rate-base-layer {
-  color: #aaa;
-  padding-left: 10px;
-  margin-top: -8px;
-}
-.rate-hover-layer {
-  color: #151515;
-  padding-left: 10px;
-  margin-top: -8px;
-}
-.rate-select-layer {
-  color: #aaa;
-  padding-left: 10px;
-  margin-top: -8px;
 }

@@ -33,32 +33,27 @@
         <p class="desc"><%= entry.Beschreibung %></p>
       </div>
       <div class="divrate">
-        <a class="rate1">Bewerten:</a>
-        <div class="rate"></div>
+        <a class="rate">Bewerten:</a>
+        <a class="ratestar" id="stern" onclick="bewertung(1, <%= entry.ID %>)"
+          >⭐</a
+        >
+        <a class="ratestar" id="stern" onclick="bewertung(2, <%= entry.ID %>)"
+          >⭐</a
+        >
+        <a class="ratestar" id="stern" onclick="bewertung(3, <%= entry.ID %>)"
+          >⭐</a
+        >
+        <a class="ratestar" id="stern" onclick="bewertung(4, <%= entry.ID %>)"
+          >⭐</a
+        >
+        <a class="ratestar" id="stern" onclick="bewertung(5, <%= entry.ID %>)"
+          >⭐</a
+        >
       </div>
     </div>
   </div>
 </div>
 
-<script src="/public/script.js"></script>
-<script
-  src="http://code.jquery.com/jquery-1.11.3.min.js"
-  charset="utf-8"
-></script>
-<script src="/public/rater.js" charset="utf-8"></script>
-<script>
-  $(document).ready(function () {
-    var options = {
-      max_value: 5,
-      step_size: 1,
-      selected_symbol_type: "utf8_star",
-      change_once: true,
-      ajax_method: "POST",
-      url: "http://localhost:3000/postBewertung",
-      additional_data: { id: <%= entry.ID %> },
-    };
-    $(".rate").rate(options);
-  });
-</script>
-
 <% });%>
+
+<script src="/public/script.js"></script>

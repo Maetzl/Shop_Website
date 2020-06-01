@@ -66,11 +66,10 @@ app.get("/", async (req, res) => {
     } else {
       if (!req.isAuthenticated()) {
         console.log("Load index...");
-        res.render('pages/index', { articles, Login: true });
+        res.render("pages/index", { articles, Login: true });
       } else {
         console.log("Load index... logged in");
-        res.render('pages/index', { articles, Login: false });
-
+        res.render("pages/index", { articles, Login: false });
       }
     }
   });
@@ -92,10 +91,10 @@ app.post(
   })
 );
 
-app.get('/logout', function (req, res) {
-  console.log("logging out...")
+app.get("/logout", function (req, res) {
+  console.log("logging out...");
   req.logOut();
-  res.redirect('/');
+  res.redirect("/");
 });
 //--------Route:   /change-articles
 
@@ -105,21 +104,31 @@ app.get("/change-articles", checkAuthenticated, (req, res) => {
   });
 });
 
-app.post('/change-articles', (req, res) => {
-
-  if (req.body.Artikel_Name && req.body.Artikel_Preis && req.body.Artikel_Beschreibung) {
-    db.run('INSERT INTO Artikel(Name, Preis, Beschreibung, Bewertung, Anzahlbewertung, Bild) VALUES(?,?,?,0,0,?);',
-      [req.body.Artikel_Name, req.body.Artikel_Preis, req.body.Artikel_Beschreibung, req.body.Artikel_Bild_Url],
+app.post("/change-articles", (req, res) => {
+  if (
+    req.body.Artikel_Name &&
+    req.body.Artikel_Preis &&
+    req.body.Artikel_Beschreibung
+  ) {
+    db.run(
+      "INSERT INTO Artikel(Name, Preis, Beschreibung, Bewertung, Anzahlbewertung, Bild) VALUES(?,?,?,0,0,?);",
+      [
+        req.body.Artikel_Name,
+        req.body.Artikel_Preis,
+        req.body.Artikel_Beschreibung,
+        req.body.Artikel_Bild_Url,
+      ],
       (err) => {
         if (err) {
           console.log(err);
         }
         console.log("Article added!");
-        res.redirect('/change-articles');
-      });
+        res.redirect("/change-articles");
+      }
+    );
   } else {
     console.log("No article added.");
-    res.redirect('/change-articles');
+    res.redirect("/change-articles");
   }
 });
 
@@ -140,14 +149,14 @@ app.post("/logout", (req, res) => {
 app.post("/postBewertung", (req, res) => {
   console.log(req.body);
   db.all(
-    `UPDATE Artikel SET Bewertung = Bewertung + ${req.body.value} WHERE rowid = ${req.body.id}`,
-    (err, artikel) => { }
+    `UPDATE Artikel SET Bewertung = Bewertung + ${req.body.i} WHERE rowid = ${req.body.id}`,
+    (err, artikel) => {}
   );
   db.all(
     `UPDATE Artikel SET Anzahlbewertung = Anzahlbewertung + 1 WHERE rowid = ${req.body.id}`,
-    (err, artikel) => { }
+    (err, artikel) => {}
   );
-  res.redirect('/');
+  res.redirect("/");
 });
 
 const server = app.listen(port, () => {
@@ -157,9 +166,9 @@ const server = app.listen(port, () => {
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
-  }else{
-  console.log("Couldn't authenticate...");
-  res.redirect("/");
+  } else {
+    console.log("Couldn't authenticate...");
+    res.redirect("/");
   }
 }
 

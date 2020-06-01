@@ -1,80 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Shop24</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../public/artikelstyle.css"
+    />
+    <link rel="stylesheet" href="/public/style.css" />
+    <script src="/public/main.js"></script>
+    <script src="/public/script.js"></script>
+  </head>
 
-<head>
-  <title>Shop24</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="../../public/artikelstyle.css" />
-  <link rel="stylesheet" href="/public/style.css" />
-  <script src="/public/main.js"></script>
-  <script src="/public/script.js"></script>
-</head>
+  <body>
+    <div class="header">
+      <div class="search">
+        <input class="search-input" type="text" placeholder="Search..." />
+        <img class="searchbtn" src="Pics/suchbutton.svg" />
+      </div>
+      <div class="container">
+        <div class="button-container">
+          <% if (!Login){ %>
+          <a href="change-articles" class="action">
+            <span>Artikel bearbeiten</span>
+          </a>
+          <a href="logout" class="action">
+            <span>Logout</span>
+          </a>
 
-<body>
-  <div class="header">
-    <div class="search">
-      <input class="search-input" type="text" placeholder="Search..." />
-      <img class="searchbtn" src="Pics/suchbutton.svg" />
-    </div>
-    <div class="container">
-      <div class="button-container">
-        <% if (!Login){ %>
-        <a href="change-articles" class="action">
-          <span>Artikel bearbeiten</span>
-        </a>
-        <a href="logout" class="action">
-          <span>Logout</span>
-        </a>
-        
-        <% }else {%>
-        <a href="login" class="action">
-          <span>Login</span>
-        </a>
-        <% } %>
+          <% }else {%>
+          <a href="login" class="action">
+            <span>Login</span>
+          </a>
+          <% } %>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="body">
-    <div class="oberesPanel">
-      <div class="highlight">
-        <img src="Pics/41t-4N5+goL._AC_SY200_.jpg" />
+    <div class="body">
+      <div class="oberesPanel">
+        <div class="highlight">
+          <img src="Pics/41t-4N5+goL._AC_SY200_.jpg" />
+        </div>
+        <div class="highlight"><img src="Pics/schuhe2.jpg" /></div>
+        <div class="highlight"><img src="Pics/schuhe3.jpg" /></div>
+        <div class="highlight"><img src="Pics/hantelnak.jpg" /></div>
+        <div class="highlight"><img src="Pics/helm.jpg" /></div>
+        <div class="highlight"><img src="Pics/latzhose.jpg" /></div>
+        <div class="highlight"><img src="Pics/socken.jpg" /></div>
+        <div class="highlight"><img src="Pics/uhr.jpg" /></div>
+        <div class="highlight"><img src="Pics/tshirt.jpg" /></div>
       </div>
-      <div class="highlight"><img src="Pics/schuhe2.jpg" /></div>
-      <div class="highlight"><img src="Pics/schuhe3.jpg" /></div>
-      <div class="highlight"><img src="Pics/hantelnak.jpg" /></div>
-      <div class="highlight"><img src="Pics/helm.jpg" /></div>
-      <div class="highlight"><img src="Pics/latzhose.jpg" /></div>
-      <div class="highlight"><img src="Pics/socken.jpg" /></div>
-      <div class="highlight"><img src="Pics/uhr.jpg" /></div>
-      <div class="highlight"><img src="Pics/tshirt.jpg" /></div>
-    </div>
-    <div class="unteresPanel">
-      <% articles.forEach((article) => { %>
-      <div class="item" onclick = "setcurrentitem(<%= article.ID %>)">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Preis</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= article.ID %></td>
-              <td><%= article.Name %></td>
-              <td><%= article.Preis %></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="unteresPanel">
+        <% articles.forEach((article) => { %>
+        <div class="item" onclick="setcurrentitem(<%= article.ID %>)">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Preis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= article.ID %></td>
+                <td><%= article.Name %></td>
+                <td><%= article.Preis %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <% }); %>
       </div>
-      <% }); %>
     </div>
-  </div>
 
-<%- include('../partials/modal.ejs', {articles: articles})%>
-
-</body>
-
+    <%- include('../partials/modal.ejs', {articles: articles})%>
+  </body>
 </html>

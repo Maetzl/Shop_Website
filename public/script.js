@@ -2,6 +2,7 @@
 var modal = document.getElementById("myModal");
 var span = [...document.getElementsByClassName("close")];
 var articleid = undefined;
+var bewertet = [];
 
 function showModal() {
   setModal();
@@ -35,16 +36,23 @@ function getcurrentitem() {
 }
 
 function bewertung(i, id) {
-  fetch("/postBewertung", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      i,
-      id,
-    }),
-  }).catch((e) => {
-    console.log(e);
-  });
+  $()
+  if (bewertet[id - 1] == null || bewertet[id - 1] == false) {
+    fetch("/postBewertung", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        i,
+        id,
+      }),
+    }).catch((e) => {
+      console.log(e);
+    });
+    console.log(bewertet);
+    bewertet[id - 1] = true;
+  } else {
+    console.log("Schon bewertet");
+  }
 }
