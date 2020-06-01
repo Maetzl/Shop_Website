@@ -36,7 +36,6 @@ function getcurrentitem() {
 }
 
 function bewertung(i, id) {
-  $()
   if (bewertet[id - 1] == null || bewertet[id - 1] == false) {
     fetch("/postBewertung", {
       method: "post",
