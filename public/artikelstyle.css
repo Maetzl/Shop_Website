@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&family=Fredoka+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap");
-
 body {
   background-color: #303030;
   color: #1edb8c;
 }
-
 .parent {
   display: grid;
   grid-template-columns: 0.7fr 1fr;

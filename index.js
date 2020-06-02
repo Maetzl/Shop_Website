@@ -171,5 +171,16 @@ function checkAuthenticated(req, res, next) {
     res.redirect("/");
   }
 }
+app.get("/search", function (req, res) {
+  console.log("logging out...");
+
+  db.all(
+    `SELECT * FROM Artikel WHERE Artikel_Name like ${req.body.suche}`,
+    (err, artikel) => {
+      res.send(artikel);
+      console.log(err);
+    }
+  );
+});
 
 module.exports = server;
