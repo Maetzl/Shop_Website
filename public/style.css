@@ -109,6 +109,20 @@ body {
   width: 300px;
 }
 @media screen and (max-width: 600px) {
+  .uberschrift {
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+  .button-container {
+    display: block;
+    margin-top: 5px;
+    margin: 20px;
+    text-align: center;
+    padding-top: 2%;
+  }
   .column {
     width: 100%;
   }
