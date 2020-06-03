@@ -26,7 +26,7 @@
             <div class="col col-4"><%= article.Beschreibung %></div>
             <div class="col col-5"><%= (article.Bewertung/article.Anzahlbewertung).toFixed(1) %>/5</div>
             <div class="col col-6"><%= article.Bild %></div>
-            <input type="submit" name="ArtikelID" value="<%= article.ID %>">
+            <button class="artikelXbtn" type="submit" name="ArtikelID" value="<%= article.ID %>" >X</button>
         </li>
     </form>
         <% }) %>

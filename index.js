@@ -66,10 +66,10 @@ app.get("/", async (req, res) => {
     } else {
       if (!req.isAuthenticated()) {
         console.log("Load index...");
-        res.render("pages/index", { articles, Login: true });
+        res.render("pages/index", { articles, Login: true, highlights: true });
       } else {
         console.log("Load index... logged in");
-        res.render("pages/index", { articles, Login: false });
+        res.render("pages/index", { articles, Login: false, highlights: true });
       }
     }
   });
@@ -171,14 +171,35 @@ function checkAuthenticated(req, res, next) {
     res.redirect("/");
   }
 }
-app.get("/search", function (req, res) {
-  console.log("logging out...");
-
+app.post("/search", function (req, res) {
+  var suchbegriff = req.body.suche;
+  console.log(suchbegriff);
   db.all(
-    `SELECT * FROM Artikel WHERE Artikel_Name like ${req.body.suche}`,
-    (err, artikel) => {
-      res.send(artikel);
-      console.log(err);
+    `SELECT rowid AS ID,* FROM Artikel Where Name like '%${req.body.suche}%'`,
+    [],
+    (err, articles) => {
+      if (err) {
+        console.log(err.message);
+        //res.render('pages/login');
+      } else {
+        if (!req.isAuthenticated()) {
+          console.log("Load index...");
+          res.render("pages/index", {
+            articles,
+            Login: true,
+            highlights: false,
+            suchbegriff: suchbegriff,
+          });
+        } else {
+          console.log("Load index... logged in");
+          res.render("pages/index", {
+            articles,
+            Login: false,
+            highlights: false,
+            suchbegriff: suchbegriff,
+          });
+        }
+      }
     }
   );
 });

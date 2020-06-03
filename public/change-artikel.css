@@ -54,5 +54,16 @@ li {
   flex-basis: 10%;
 }
 .col-6 {
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 300px;
+  text-overflow: ellipsis;
+  text-align: center;
   flex-basis: 25%;
+}
+
+.artikelXbtn {
+  height: 25px;
+  width: 25px;
+  text-align: center;
 }
