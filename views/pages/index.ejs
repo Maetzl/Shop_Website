@@ -43,12 +43,12 @@
       <div class="row">
         <div class="column">
           <% articles.forEach((article) => { %>
-            <div class="mySlides"><img src="<%= article.Bild %>" /></div>
+            <div class="mySlides" onclick="setcurrentitem(<%= article.ID %>)"><img src="<%= article.Bild %>" /></div>
           <% }); %>
         </div>
         <div class="column">
           <% articles.reverse().forEach((article) => { %>
-            <div class="mySlides2"><img src="<%= article.Bild %>" /></div>
+            <div class="mySlides2" onclick="setcurrentitem(<%= article.ID %>)"><img src="<%= article.Bild %>" /></div>
           <% }); %>
         </div>
       </div>
@@ -105,7 +105,7 @@
         slideIndex2++;
         if (slideIndex2 > x.length) {slideIndex2 = 1}
         x[slideIndex2-1].style.display = "block";
-        setTimeout(carousel2, 5000); 
+        setTimeout(carousel2, 4500); 
 }
       </script>
   </body>
