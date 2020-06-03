@@ -54,7 +54,7 @@
       </div>
         
       <div class="unteresPanel">
-        <% articles.forEach((article) => { %>
+        <% articles.reverse().forEach((article) => { %>
         <div class="artikelFenster" onclick="setcurrentitem(<%= article.ID %>)">
             <div class="untereArtikel"><img src="<%= article.Bild %>" />
               <div class="highlight-txt">
